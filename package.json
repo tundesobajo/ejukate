@@ -9,7 +9,9 @@
     "packages/*"
   ],
   "scripts": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "typescript": "^4.0.2"
+  },
   "keywords": [
     "typescript",
     "node",
