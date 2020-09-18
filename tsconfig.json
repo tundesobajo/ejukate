@@ -15,6 +15,6 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["packages/*/src/**/*"],
+  "include": ["packages/*/src/**/*", ".eslintrc.*"],
   "exclude": ["node_modules", "**/*.spec.ts", "dist"]
 }
