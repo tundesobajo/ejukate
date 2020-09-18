@@ -1,0 +1,22 @@
+{
+  "name": "ejukate",
+  "version": "0.1.0",
+  "repository": "https://github.com/tundesobajo/ejukate.git",
+  "author": "Olatunde Sobajo <6509610+tundesobajo@users.noreply.github.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {},
+  "devDependencies": {},
+  "keywords": [
+    "typescript",
+    "node",
+    "express",
+    "nestjs",
+    "react",
+    "graphql",
+    "postgres"
+  ]
+}
