@@ -14,23 +14,27 @@ import {
 import { CreateAwardDto } from './dto/create-award';
 import { UpdateAwardDto } from './dto/update-award';
 import { AwardQueryDto } from './dto/award-query';
+import { AwardsService } from './awards.service';
+import { Award } from './type/Award';
 
 @Controller('awards')
 export class AwardsController {
+  constructor(private awardsService: AwardsService) {}
+
   @Post()
   @Header('Cache-Control', 'none')
-  create(@Body() createDto: CreateAwardDto): string {
-    return `Creates award with id ${createDto.id} and name ${createDto.name}`;
+  create(@Body() createDto: CreateAwardDto): void {
+    this.awardsService.create(createDto);
   }
 
   @Get()
-  findAll(@Query() query: AwardQueryDto): string {
-    return `Lists first ${query.limit} awards`;
+  findAll(@Query() query: AwardQueryDto): Award[] {
+    return this.awardsService.findAll(query);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): string {
-    return `Get award with id of ${id}`;
+  findOne(@Param('id') id: string): Award | null {
+    return this.awardsService.findOne(id);
   }
 
   @Get(':id/view')
@@ -42,12 +46,12 @@ export class AwardsController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateDto: UpdateAwardDto): string {
-    return `Update award of id ${id} with name ${updateDto.name}`;
+  update(@Param('id') id: string, @Body() updateDto: UpdateAwardDto): Award {
+    return this.awardsService.update(id, updateDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string): string {
-    return `Deletes award of if ${id}`;
+  remove(@Param('id') id: string): unknown {
+    return this.awardsService.delete(id);
   }
 }
