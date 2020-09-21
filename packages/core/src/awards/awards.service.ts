@@ -21,10 +21,12 @@ export class AwardsService {
   }
 
   update(id: string, award: Partial<Award>): Award {
+    console.log(id, award); // eslint-disable-line no-console
     throw new Error('not yet implemented');
   }
 
   delete(id: string): unknown {
+    console.log(id); // eslint-disable-line no-console
     throw new Error('not yet implemented');
   }
 }
