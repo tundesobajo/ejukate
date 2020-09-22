@@ -9,8 +9,11 @@ import {
   Put,
   Query,
   Redirect,
+  UseFilters,
 } from '@nestjs/common';
 
+import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
+import { ForbiddenException } from '../common/exceptions/forbidden.exception';
 import { CreateAwardDto } from './dto/create-award';
 import { UpdateAwardDto } from './dto/update-award';
 import { AwardQueryDto } from './dto/award-query';
@@ -28,7 +31,11 @@ export class AwardsController {
   }
 
   @Get()
+  @UseFilters(new HttpExceptionFilter())
   findAll(@Query() query: AwardQueryDto): Award[] {
+    if (query.limit === '0') {
+      throw new ForbiddenException();
+    }
     return this.awardsService.findAll(query);
   }
 
