@@ -14,6 +14,7 @@ import {
 
 import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
 import { ForbiddenException } from '../common/exceptions/forbidden.exception';
+import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { CreateAwardDto } from './dto/create-award';
 import { UpdateAwardDto } from './dto/update-award';
 import { AwardQueryDto } from './dto/award-query';
@@ -26,7 +27,7 @@ export class AwardsController {
 
   @Post()
   @Header('Cache-Control', 'none')
-  create(@Body() createDto: CreateAwardDto): void {
+  create(@Body(new ValidationPipe()) createDto: CreateAwardDto): void {
     this.awardsService.create(createDto);
   }
 
