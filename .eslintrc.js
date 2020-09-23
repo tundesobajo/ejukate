@@ -30,6 +30,8 @@ module.exports = {
     // eslint
     'class-methods-use-this': 'off',
     'no-void': ['error', { allowAsStatement: true }],
+    // typescript
+    '@typescript-eslint/no-explicit-any': 'off',
     // import
     'import/prefer-default-export': 'off',
     'import/extensions': [
