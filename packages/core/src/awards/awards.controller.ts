@@ -13,6 +13,7 @@ import {
 } from '@nestjs/common';
 
 import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
+import { AwardByIdPipe } from './pipes/award-by-id.pipe';
 import { CreateAwardDto } from './dto/create-award';
 import { UpdateAwardDto } from './dto/update-award';
 import { AwardQueryDto } from './dto/award-query';
@@ -36,8 +37,8 @@ export class AwardsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Award | null {
-    return this.awardsService.findOne(id);
+  findOne(@Param('id', AwardByIdPipe) award: Award): Award {
+    return award;
   }
 
   @Get(':id/view')
