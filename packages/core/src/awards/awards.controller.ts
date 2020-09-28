@@ -10,9 +10,11 @@ import {
   Query,
   Redirect,
   UseFilters,
+  UseInterceptors,
 } from '@nestjs/common';
 
 import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
+import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
 import { AwardByIdPipe } from './pipes/award-by-id.pipe';
 import { CreateAwardDto } from './dto/create-award';
 import { UpdateAwardDto } from './dto/update-award';
@@ -20,6 +22,7 @@ import { AwardQueryDto } from './dto/award-query';
 import { AwardsService } from './awards.service';
 import { Award } from './type/Award';
 
+@UseInterceptors(LoggingInterceptor)
 @Controller('awards')
 export class AwardsController {
   constructor(private awardsService: AwardsService) {}
